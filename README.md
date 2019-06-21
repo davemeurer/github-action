@@ -1,10 +1,10 @@
 # GitHub Action for Synopsys Detect
 
-This Action is for scanning vulnerabilities on your source code, it enables scanning a repository with [`Synopsys Detect`](https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/62423113/Synopsys+Detect), Synopsys Detect (formerly Hub Detect) consolidates the functionality of Black Duck™ and Coverity™ on Polaris™ tools into a single tool. Synopsys Detect also makes it easier to set up and scan code bases using a variety of languages and package managers.  
+The Synopsys Detect GitHub Action makes it easy to scan GitHub repositories with Synopsys Application Security tools, which includes the scanning functionality of Coverity on Polaris and Black Duck. [Synopsys Detect](https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/62423113/Synopsys+Detect) makes it easy to set up and scan code bases that use a variety of languages and package managers. The Synopsys Detect GitHub Action allows your organization to easily add vulnerability testing on a variety of Github Platform events, such as push, pull, issue, and release.
 
 ## Usage
 
-Including Synopsys detect in your workflow is fairly simple. Just select Synopsys-detect from [Github Marketplace](https://github.com/marketplace/actions/) and click on use the latest version to include it in your workspace. Detailed description on using Actions is provided by Github [Learn more](https://help.github.com/en/articles/creating-a-workflow-with-github-actions) about creating a workflow and adding new actions to the workflow.
+Including Synopsys detect in your workflow is fairly simple. Just install Synopsys Detect from the [Github Marketplace](https://github.com/marketplace/actions/). A detailed description on using Actions is provided by Github. [Learn more](https://help.github.com/en/articles/creating-a-workflow-with-github-actions) about creating a workflow and adding new actions to the workflow.
 
 ## Basic Usage
 
@@ -45,7 +45,7 @@ action "Tag" {
 * `BLACKDUCK_URL` - **REQUIRED**. The URL to use for scan to reside with detect. Required for scan initiations ([more info](https://synopsys.atlassian.net/wiki/spaces/INTDOCS/pages/62423113/Synopsys+Detect#SynopsysDetect-Providingcredentials))
 
 ## Scan Containers
-You can scan entire containers running your application using this Action. Given below is an example workflow of how to do that. Rename **CONTAINER_NAME** as required.
+You can scan containers running your applications using this Action. The following is an example workflow. Rename **CONTAINER_NAME** as required.
 
 ```
 workflow "Build and Container Scan" {
@@ -81,11 +81,11 @@ action "Synopsys Detect" {
 
 # Using this Action to run Polaris
 
-Although Polaris™ generates it's own build commands depending on the project manager used we strongly recommend having your own *swip.yml* file in the repository.
+Although Polaris generates it's own build commands depending on the project manager used, we strongly recommend having your own *swip.yml* file in the repository.
 
 ## Buildless Capture
 
-Including a file like this in the repository with the name *swip.yml* should run a buildless capture in Polaris™. Make sure to include all the languages used in repo.
+Including a file like this in the repository with the name *swip.yml* should run a buildless capture in Polaris. Make sure to include all the languages used in your repo.
 
 ```
 version: "1"
@@ -110,7 +110,7 @@ install:
 serverUrl: https://polaris.synopsys.com
 ```
 
-Then just including the Polaris™ URL and Access Token in detect should suffice.
+Then include the Polaris URL and Access Token in the Detect parameters.
 
 ```
 
@@ -124,9 +124,9 @@ action "Polaris" {
 
 ## Build Capture
 
-For build capture to work Polaris requires build commands and the docker container should have appropriate build dependencies. This means that the Dockerfile must reside in local repository.
+For build capture, Polaris requires build commands and the docker container should have appropriate build dependencies. This means that the Dockerfile must reside in local repository.
 
-In the polaris folder here is defined a Dockerfile, for a build capture you need to use the Base Image used during the build phase. For example for a Maven project base image would be something like "maven:3.6.1-jdk-8". (Refrain from using alpine based images as some commands may not work)
+In the polaris folder here is defined a Dockerfile, for a build capture you need to use the Base Image used during the build phase. For example for a Maven project base image would be something like "maven:3.6.1-jdk-8". (Note, when using alpine based images, some commands may not work)
 
 The Dockerfile template is shown in the [polaris folder](/polaris) of this repo.
 Follow these steps to run Polaris
